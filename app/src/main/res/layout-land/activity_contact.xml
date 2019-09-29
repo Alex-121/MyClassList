@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContactActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/navbar_background">
+
+
+        <ImageButton
+            android:id="@+id/ImageButtonList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:layout_toStartOf="@id/imageButtonMap"
+            android:layout_toLeftOf="@id/imageButtonMap"
+            android:contentDescription="@string/contact_icon"
+            android:src="@drawable/baseline_perm_contact_calendar_black_24" />
+
+        <ImageButton
+            android:id="@+id/imageButtonMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/baseline_map_black_24" 
+            android:contentDescription="@string/map"/>
+
+        <ImageButton
+            android:id="@+id/imageButtonSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginLeft="1500dp"
+            android:layout_toEndOf="@id/imageButtonMap"
+            android:layout_toRightOf="@id/imageButtonMap"
+            android:src="@drawable/baseline_settings_applications_black_24" 
+            android:contentDescription="@string/settings_icon"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

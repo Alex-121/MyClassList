@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="textGPS" type="id" />
+    <item name="textLat" type="id" />
+    <item name="textLong" type="id" />
+    <item name="textNetwork" type="id" />
+    <item name="textLat2" type="id" />
+    <item name="textLong2" type="id" />
+    <item name="textBest" type="id" />
+    <item name="textLat3" type="id" />
+    <item name="textLong3" type="id" />
+    <item name="activity_exercise" type="id" />
+</resources>
