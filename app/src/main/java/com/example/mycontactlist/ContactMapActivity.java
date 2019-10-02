@@ -18,7 +18,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
