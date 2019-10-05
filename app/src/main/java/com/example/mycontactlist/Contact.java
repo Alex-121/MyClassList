@@ -1,5 +1,9 @@
 package com.example.mycontactlist;
 
+import android.graphics.Bitmap;
+
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 import java.util.Calendar;
 
 public class Contact {
@@ -14,6 +18,7 @@ public class Contact {
     private String eMail;
     private Calendar birthday;
     private int bestFriendForever;
+    private Bitmap picture;
 
     public Contact() {
         contactID = -1;
@@ -109,5 +114,11 @@ public class Contact {
         this.bestFriendForever = bestFriendForever;
     }
 
+    public void setPicture(Bitmap b) {
+        picture = b;
+    }
 
+    public Bitmap getPicture() {
+        return picture;
+    }
 }

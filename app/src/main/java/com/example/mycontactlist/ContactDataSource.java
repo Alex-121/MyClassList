@@ -5,9 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.appcompat.app.AlertDialog;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -41,6 +45,13 @@ public class ContactDataSource {
             initalValues.put("birthday",String.valueOf(c.getBirthday().getTimeInMillis()));
             initalValues.put("bestFriendForever", c.getBestFriendForever());
 
+            if(c.getPicture() != null) {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                c.getPicture().compress(Bitmap.CompressFormat.PNG,100,baos);
+                byte[] photo = baos.toByteArray();
+                initalValues.put("contactphoto",photo);
+            }
+
             System.out.println(c.getBestFriendForever());
             didSucceed = database.insert("contact",null,initalValues) > 0;
         }
@@ -66,6 +77,12 @@ public class ContactDataSource {
             updateVales.put("birthday",String.valueOf(c.getBirthday().getTimeInMillis()));
             updateVales.put("bestFriendForever", c.getBestFriendForever());
 
+            if(c.getPicture() != null) {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                c.getPicture().compress(Bitmap.CompressFormat.PNG,100,baos);
+                byte[] photo = baos.toByteArray();
+                updateVales.put("contactphoto",photo);
+            }
             didSucceed = database.update("contact",updateVales,"_id=" + rowID,null) > 0;
         }
         catch (Exception e) {
@@ -180,6 +197,12 @@ public class ContactDataSource {
                 contact.setBirthday(calendar);
                 contact.setBestFriendForever(cursor.getInt(10));
 
+                byte[] photo = cursor.getBlob(11);
+                if (photo != null) {
+                    ByteArrayInputStream imageStream = new ByteArrayInputStream(photo);
+                    Bitmap thePicture = BitmapFactory.decodeStream(imageStream);
+                    contact.setPicture(thePicture);
+                }
                 cursor.close();
             }
 

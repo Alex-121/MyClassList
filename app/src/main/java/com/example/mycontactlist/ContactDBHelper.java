@@ -9,11 +9,11 @@ import androidx.annotation.Nullable;
 
 public class ContactDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME ="mycontacts.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public static final String CREATE_TABLE_CONTACT = "create table contact (_id integer primary key autoincrement ," +
             "contactname text not null, streetaddress text, city text, state text, zipcode text, phonenumber text," +
-            "cellnumber text, email text, birthday text);";
+            "cellnumber text, email text, birthday text, contactphoto blob);";
 
 
     public ContactDBHelper(Context context) {
@@ -29,9 +29,12 @@ public class ContactDBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w(ContactDBHelper.class.getName(), "Upgrading database from version " + oldVersion
                 + " to " + newVersion);
+        try{
+            db.execSQL("Alter table contact add column contactphoto blob");
+        }
+        catch (Exception e){
 
-        if ( oldVersion < 2)
-            db.execSQL("Alter table contact add column bestFriendForever integer");
+        }
 
     }
 }
