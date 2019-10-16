@@ -450,7 +450,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         editCell.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                checkPhonePermission(currentContact.getCellNumber());
+                checkPhonePermission(currentContact.getCellNumber(), new String("test"));
                 return false;
             }
         });
@@ -477,6 +477,29 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         }
         else
             callContact(phoneNumber);
+    }
+
+    private void checkPhonePermission(String phoneNumber, String text) {
+        if(Build.VERSION.SDK_INT >= 23) {
+            if(ContextCompat.checkSelfPermission(ContactActivity.this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                if(ActivityCompat.shouldShowRequestPermissionRationale(ContactActivity.this, Manifest.permission.SEND_SMS)) {
+                    Snackbar.make(findViewById(R.id.activity_contact), "MyContactList requires this permission to place a text from the app.",
+                            Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ActivityCompat.requestPermissions(ContactActivity.this, new String[] {Manifest.permission.SEND_SMS}, PERMISSION_REQUEST_TEXT);
+                        }
+                    }).show();
+                }
+                else {
+                    ActivityCompat.requestPermissions(ContactActivity.this, new String[] {Manifest.permission.SEND_SMS}, PERMISSION_REQUEST_TEXT);
+                }
+            }
+            else
+                textContact(phoneNumber);
+        }
+        else
+            textContact(phoneNumber);
     }
 
     @Override
@@ -515,7 +538,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
     }
     private void textContact(String phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("smsto:" + phoneNumber));
+        intent.setData(Uri.parse("sms:" + phoneNumber));
         if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED){
             return ;
         }
