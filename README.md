@@ -4,10 +4,6 @@ Mobile Development at Georgia State University
 ## Textbook
 Mobile App Development for iOS and Android 2nd Edition
 
-
-### WIP 
-screenshots of progress
-
 ## Contact List
 Should show all contacts in the database <br>
 ![](app/images/mobileapp_contactlist.PNG)<br>
