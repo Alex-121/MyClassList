@@ -450,7 +450,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         editCell.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                checkPhonePermission(currentContact.getCellNumber(), new String("test"));
+                checkPhonePermission(currentContact.getCellNumber(), ("test"));
                 return false;
             }
         });
