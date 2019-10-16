@@ -17,5 +17,5 @@ Allow user to define how they want the contact list sorted and what background c
 ![](app/images/mobileapp_sharedPref.PNG)
 
 ## Contact Location
-Using Google's map API, find the location of youor contacts using the address in the database. Also be able to find location via bluetooth <br>
+Using Google's map API, find the location of youor contacts using the address in the database. Also be able to find location via GPS and network <br>
 ![](app/images/mobileapp_mapApi.PNG)
